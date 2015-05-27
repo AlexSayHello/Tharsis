@@ -1,0 +1,25 @@
+#------------------------------------------------------------------------------
+#                          HTACCESS - Rescritura HTTP
+#------------------------------------------------------------------------------
+#   Archivo encargado de recibir y convertir la peticion HTTP realizada
+#   por el usuario a un formato legible por el sistema, su funcion princ-
+#   -ipal es la de redirigir todas las peticiones al Frontend Controller
+#   el cual es el archvo index.php de la carpeta ./public, ademas otorga
+#   un String con los parametros de la peticion.
+#
+#   Ej:
+#   /usuario/perfil/Alex
+#
+#------------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    #Impedir el acceso a este archivo
+    <Files .htaccess>
+        order allow,deny
+        deny from all
+    </Files>
+
+    #Creacion de url semanticas
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
