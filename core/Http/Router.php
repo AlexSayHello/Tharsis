@@ -229,21 +229,52 @@ class Router {
 
 
     /*-------------------------------------------------------------------------
-    |
-    |
+    |   Metodo getController - Obtiene controlador declarado
+    |--------------------------------------------------------------------------
+    |   Este metodo retorna el controlador declarado en el metodo get
+    |   en el archivo de rutas de ./app/Routes.php
     |------------------------------------------------------------------------*/
     private function getController () {
         return explode( "@" , $this->controller_and_action )[0];
     }
 
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo getControllerName - Nombre completo del metodo
+    |--------------------------------------------------------------------------
+    |   Este metodo retonar el nombre completo del controlador, incluyendo
+    |   el sufijo estandar declarado en la propiedad $controller_siffix
+    |------------------------------------------------------------------------*/
     private function getControllerName () {
         return $this->getController() . $this->controller_suffix;
     }
 
-    private function getAction () {
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo getAction - Nombre de la accion declarada en get
+    |--------------------------------------------------------------------------
+    |   Este metodo retorna el nombre completo de la accion declarada en
+    |   en el metodo get, en el archivo ./app/Routes.php.
+    |
+    |   El nombre de la acción se corresponde con el metodo al que debe
+    |   invocar el enrutador en su correspondiente controlador.
+    |------------------------------------------------------------------------*/
+    private function getAction ( ) {
         return explode( "@" , $this->controller_and_action )[1] . $this->action_suffix;
     }
 
+    /*-------------------------------------------------------------------------
+    |   Metodo checkControllerExists - Existencia del controlador
+    |--------------------------------------------------------------------------
+    |   Este metodo comprueba si existe el controlador declarado en el
+    |   metodo get, en el archivo ./app/Routes.php.
+    |
+    |   Para ello hace una busqueda en el directorio ./app/controllers/
+    |   Si el archivo que contiene el controlador existe, el archivo
+    |   retornara true, en caso contrario retornara falso.
+    |------------------------------------------------------------------------*/
     private function checkControllerExists ( ) {
         if ( file_exists( $this->getControllerFullPath() ) )
         {
@@ -256,6 +287,14 @@ class Router {
         }
     }
 
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo getControllerFullPath - Ruta completa del controlador
+    |--------------------------------------------------------------------------
+    |   Este metodo retorna la ruta completa que alberga el archivo
+    |   de la clase correspondiente al controlador solicitado.
+    |------------------------------------------------------------------------*/
     private function getControllerFullPath () {
         return $this->path . $this->getController() . $this->controller_suffix . ".php";
     }
@@ -279,6 +318,12 @@ class Router {
 
             }
         }
+
+        private function executeController () {
+
+        }
+
+        private function executeAction () {}
 
     }
 
