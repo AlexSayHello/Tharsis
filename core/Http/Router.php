@@ -107,7 +107,8 @@ class Router {
         $this->route = $route;
         $this->controller_and_action = $controller_and_action;
 
-        return $this->validateRequest();
+        return $this->executeController();
+
 
     }
 
@@ -266,7 +267,7 @@ class Router {
     }
 
     /*-------------------------------------------------------------------------
-    |   Metodo checkControllerExists - Existencia del controlador
+    |   Metodo ControllerExists - Existencia del controlador
     |--------------------------------------------------------------------------
     |   Este metodo comprueba si existe el controlador declarado en el
     |   metodo get, en el archivo ./app/Routes.php.
@@ -275,16 +276,33 @@ class Router {
     |   Si el archivo que contiene el controlador existe, el archivo
     |   retornara true, en caso contrario retornara falso.
     |------------------------------------------------------------------------*/
-    private function checkControllerExists ( ) {
-        if ( file_exists( $this->getControllerFullPath() ) )
-        {
-            return true;
-        }
+    private function controllerExists ( ) {
+        return file_exists( $this->getControllerFullPath() );
+    }
 
-        else
-        {
-            return false;
-        }
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo controllerClassExists - Existencia de la clase controladora
+    |--------------------------------------------------------------------------
+    |   Este metodo comprueba la existencia de la clase asociada al
+    |   controlador solicitado, si esta existe retornara true, de
+    |   contrario retonara false.
+    |------------------------------------------------------------------------*/
+    private function controllerClassExists () {
+        return class_exists("\\App\\Controllers\\" . $this->getControllerName());
+    }
+
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo controllerActionExists - Existencia de la accion
+    |--------------------------------------------------------------------------
+    |   Este metodo comprueba la existencia del metodo correspondiente a la
+    |   accion declarada.
+    |------------------------------------------------------------------------*/
+    private function controllerActionExists ( $controller_object ) {
+        return method_exists( $controller_object , $this->getAction() );
     }
 
 
@@ -299,32 +317,55 @@ class Router {
         return $this->path . $this->getController() . $this->controller_suffix . ".php";
     }
 
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo validateRequest - Validacion de la peticion
+    |--------------------------------------------------------------------------
+    |   Este metodo comprueba y valida que todos los pametros
+    |   de la peticion sean correctos y coincidan.
+    |------------------------------------------------------------------------*/
     private function validateRequest () {
 
         if ( $this->routesMatch() )
         {
-            if ( $this->checkControllerExists () )
+            if ( $this->controllerExists () )
             {
-                require $this->getControllerFullPath();
-
-                $class = "App\\Controllers\\" . $this->getControllerName();
-                $controller = new $class();
-
-                if ( method_exists( $controller , $this->getAction()) )
+                if ( $this->controllerClassExists() )
                 {
-                    $action = $this->getAction();
-                    return $controller->$action();
+                    return true;
                 }
-
             }
         }
 
-        private function executeController () {
+    }
 
+
+
+    /*-------------------------------------------------------------------------
+    |   Metodo executeController - Ejecucion del controlador
+    |--------------------------------------------------------------------------
+    |   Una vez comprobada la validez de la peticion y que todos los
+    |   parametros coincidan, se crea una instancia de la clase
+    |   asociada al controlador y despues se ejecuta el
+    |   metodo asociado a la accion
+    |------------------------------------------------------------------------*/
+    private function executeController () {
+        if ( $this->validateRequest() )
+        {
+            $class = "App\\Controllers\\" . $this->getControllerName();
+            $controller = new $class();
+
+            /* REVISAR:
+             * La comprobacion de la existencia del metodo debe realizarse
+             * fuera del metodo de ejecuacion del mismo.
+             */
+            if ( $this->controllerActionExists( $controller ) )
+            {
+                $action = $this->getAction();
+                $controller->$action();
+            }
         }
-
-        private function executeAction () {}
-
     }
 
 }

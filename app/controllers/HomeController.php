@@ -3,7 +3,7 @@
 class HomeController {
 
     public function indexAction () {
-        include "../app/Config/Database.php";
+        echo "Hola";
     }
 
     public function userAction () {
