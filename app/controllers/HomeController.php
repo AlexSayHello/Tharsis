@@ -1,9 +1,11 @@
 <?php namespace App\Controllers;
 
-class HomeController {
+use Core\Http\BaseController;
+
+class HomeController extends BaseController {
 
     public function indexAction () {
-        echo "Hola";
+        $this->view->execute();
     }
 
     public function userAction () {

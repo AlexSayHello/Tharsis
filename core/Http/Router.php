@@ -10,7 +10,9 @@
 -------------------------------------------------------------------------------*/
 
 use App\Controllers;
+use Core\Responses\View;
 use Core\Utilities\Matrix;
+use Doctrine\ORM\Query\Expr\Base;
 
 class Router {
 
@@ -76,6 +78,7 @@ class Router {
     |   la ruta declarada en el metodo get en ./app/Routes.php
     |------------------------------------------------------------------------*/
     private $controller_and_action;
+    private $view;
 
 
 
@@ -88,8 +91,9 @@ class Router {
     |   El objeto es instanciado en ./app/App.php y llamado en
     |   ./public/index.php
     |--------------------------------------------------------------------------*/
-    public function __construct ( Request $request ) {
+    public function __construct ( Request $request , View $view ) {
         $this->request = $request;
+        $this->view = $view;
 
     }
 
@@ -354,7 +358,7 @@ class Router {
         if ( $this->validateRequest() )
         {
             $class = "App\\Controllers\\" . $this->getControllerName();
-            $controller = new $class();
+            $controller = new $class( $this->view );
 
             /* REVISAR:
              * La comprobacion de la existencia del metodo debe realizarse
