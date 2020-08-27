@@ -1,5 +1,5 @@
 <img src="https://github.com/AlexSayHello/Tharsis/blob/master/resources/project/img/tharsis-project-logo.png?raw=true">
-------------------------
+
 > Por Alejandro G. Riaño
 
 > **Estado del proyecto**: En desarrollo de primera version
