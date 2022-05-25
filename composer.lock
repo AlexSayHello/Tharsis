@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "fa816124492baccfa3f6e64d196585ff",
+    "content-hash": "bab33a7514da734504946d9a43021bbc",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -72,7 +72,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2014-12-23 22:40:37"
+            "time": "2014-12-23T22:40:37+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -142,7 +142,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-04-15 00:11:59"
+            "time": "2015-04-15T00:11:59+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -208,7 +208,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2015-04-14 22:21:58"
+            "time": "2015-04-14T22:21:58+00:00"
         },
         {
             "name": "doctrine/common",
@@ -281,7 +281,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-04-02 19:55:44"
+            "time": "2015-04-02T19:55:44+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -352,7 +352,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-01-12 21:52:47"
+            "time": "2015-01-12T21:52:47+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -419,7 +419,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2014-12-20 21:24:13"
+            "time": "2014-12-20T21:24:13+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -473,7 +473,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2014-10-13 12:58:55"
+            "time": "2014-10-13T12:58:55+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -527,19 +527,19 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2014-09-09 13:34:57"
+            "time": "2014-09-09T13:34:57+00:00"
         },
         {
             "name": "doctrine/orm",
             "version": "v2.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
+                "url": "https://github.com/doctrine/orm.git",
                 "reference": "aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe",
                 "reference": "aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe",
                 "shasum": ""
             },
@@ -604,24 +604,28 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-04-02 20:40:18"
+            "time": "2015-04-02T20:40:18+00:00"
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.23",
+            "version": "v3.1.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "04f0090c40b1a0e1fb55dbe0297f08386b36de21"
+                "reference": "a2713ab89e6d773bc4819f11857af7f6b2e353a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/04f0090c40b1a0e1fb55dbe0297f08386b36de21",
-                "reference": "04f0090c40b1a0e1fb55dbe0297f08386b36de21",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/a2713ab89e6d773bc4819f11857af7f6b2e353a9",
+                "reference": "a2713ab89e6d773bc4819f11857af7f6b2e353a9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5 || ^6.5 || ^5.7 || ^4.8",
+                "smarty/smarty-lexer": "^3.1"
             },
             "type": "library",
             "extra": {
@@ -631,9 +635,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "libs/Smarty.class.php",
-                    "libs/SmartyBC.class.php",
-                    "libs/sysplugins/"
+                    "libs/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -659,7 +661,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-05-12 02:08:22"
+            "time": "2022-05-17T12:57:52+00:00"
         },
         {
             "name": "symfony/console",
@@ -667,12 +669,12 @@
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
+                "url": "https://github.com/symfony/console.git",
                 "reference": "ebc5679854aa24ed7d65062e9e3ab0b18a917272"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/ebc5679854aa24ed7d65062e9e3ab0b18a917272",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ebc5679854aa24ed7d65062e9e3ab0b18a917272",
                 "reference": "ebc5679854aa24ed7d65062e9e3ab0b18a917272",
                 "shasum": ""
             },
@@ -717,7 +719,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-05-02 15:18:45"
+            "time": "2015-05-02T15:18:45+00:00"
         }
     ],
     "packages-dev": [],
@@ -729,5 +731,6 @@
     "platform": {
         "php": ">5.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
